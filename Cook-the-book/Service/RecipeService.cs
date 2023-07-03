@@ -51,7 +51,7 @@ namespace Cook_the_book.Service
         {
             try
             {
-                int newId = GetNextRecipeId();
+                int newId = await GetNextRecipeId();
                 recipe.Id = newId;
                 await _recipeCollection.InsertOneAsync(recipe);
             }
@@ -90,11 +90,20 @@ namespace Cook_the_book.Service
             }
         }
 
-        private int GetNextRecipeId()
+        private async Task<int> GetNextRecipeId()
         {
-            int maxId = _recipeCollection.AsQueryable().Max(r => (int?)r.Id) ?? 0;
-            int nextId = maxId + 1;
-            return nextId;
+            var maxRecipe = await _recipeCollection.Find(_ => true)
+                .SortByDescending(r => r.Id)
+                .FirstOrDefaultAsync();
+
+            if (maxRecipe == null)
+            {
+                return 1;
+            }
+            else
+            {
+                return maxRecipe.Id + 1;
+            }
         }
     }
 }
