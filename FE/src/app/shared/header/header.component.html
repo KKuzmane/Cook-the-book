@@ -1,0 +1,8 @@
+<nav class="header">
+    <ul class="header__nav">
+      <li *ngFor="let button of buttons" class="header__nav-item">
+        <a [routerLink]="button.link" class="header__nav-link">{{ button.label }}</a>
+      </li>
+    </ul>
+  </nav>
+  
