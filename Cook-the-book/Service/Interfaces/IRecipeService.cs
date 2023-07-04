@@ -6,7 +6,7 @@ namespace Cook_the_book.Service.Interfaces
     {
         Task<List<Recipe>> GetAllRecipes();
         Task<Recipe> GetRecipeById(int id);
-        Task CreateRecipe(Recipe recipe);
+        Task<int> CreateRecipe(Recipe recipe);
         Task<bool> UpdateRecipe(int id, Recipe updatedRecipe);
         Task<bool> DeleteRecipe(int id);
     }

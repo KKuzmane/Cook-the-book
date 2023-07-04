@@ -15,14 +15,14 @@ namespace Cook_the_book.Controllers
             _recipeService = recipeService;
         }
 
-        [HttpGet]
+        [HttpGet("GetRecipes")]
         public async Task<ActionResult<IEnumerable<Recipe>>> GetRecipes()
         {
             var recipes = await _recipeService.GetAllRecipes();
             return Ok(recipes);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("GetRecipe/{id}")]
         public async Task<ActionResult<Recipe>> GetRecipe(int id)
         {
             var recipe = await _recipeService.GetRecipeById(id);
@@ -33,14 +33,14 @@ namespace Cook_the_book.Controllers
             return Ok(recipe);
         }
 
-        [HttpPost]
+        [HttpPost("CreateRecipe")]
         public async Task<ActionResult<Recipe>> CreateRecipe(Recipe recipe)
         {
             await _recipeService.CreateRecipe(recipe); // Modified this line
             return CreatedAtAction(nameof(GetRecipe), new { id = recipe.Id }, recipe);
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("UpdateRecipe/{id}")]
         public async Task<IActionResult> UpdateRecipe(int id, Recipe updatedRecipe)
         {
             var success = await _recipeService.UpdateRecipe(id, updatedRecipe);
@@ -51,7 +51,7 @@ namespace Cook_the_book.Controllers
             return NoContent();
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("DeleteRecipe/{id}")]
         public async Task<IActionResult> DeleteRecipe(int id)
         {
             var success = await _recipeService.DeleteRecipe(id);

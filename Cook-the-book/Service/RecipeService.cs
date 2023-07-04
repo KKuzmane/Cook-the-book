@@ -1,6 +1,7 @@
 ﻿using Cook_the_book.Data;
 using Cook_the_book.Models;
 using Cook_the_book.Service.Interfaces;
+using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
 using System;
@@ -47,13 +48,14 @@ namespace Cook_the_book.Service
             }
         }
 
-        public async Task CreateRecipe(Recipe recipe)
+        public async Task<int> CreateRecipe(Recipe recipe)
         {
             try
             {
                 int newId = await GetNextRecipeId();
                 recipe.Id = newId;
                 await _recipeCollection.InsertOneAsync(recipe);
+                return newId;
             }
             catch (Exception ex)
             {
