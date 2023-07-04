@@ -1,0 +1,5 @@
+<div class="recipe-category-container" (click)="fetchRecipes()" (mouseenter)="isHovered = true"
+    (mouseleave)="isHovered = false">
+    <div class="recipe-category-image" [style.background-image]="'url(' + imageSrc + ')'"></div>
+    <div class="recipe-category-text">{{ text }}</div>
+</div>

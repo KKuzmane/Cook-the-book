@@ -1,21 +1,23 @@
-.header {
-    background-color: #333;
-    padding: 10px;
-    color: #fff;
-}
-
 .header__nav {
     list-style-type: none;
     margin: 0;
-    padding: 0;
     display: flex;
+    align-items: center;
+    background-color: #333;
+    padding: 10px;
+    border-radius: 5px;
 }
 
 .header__nav-item {
     margin-right: 10px;
 }
 
+.header__nav-item--login {
+    margin-left: auto;
+}
+
 .header__nav-link {
+    display: inline-block;
     color: #fff;
     text-decoration: none;
     padding: 8px;
@@ -24,6 +26,16 @@
     transition: background-color 0.3s ease;
 }
 
+.header__nav-link--login {
+    font-size: 16px;
+    padding: 10px 20px;
+}
+
 .header__nav-link:hover {
     background-color: #888;
+}
+
+.header__nav-icon {
+    width: 50px;
+    height: 50px;
 }

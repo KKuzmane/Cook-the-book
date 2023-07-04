@@ -1,8 +1,12 @@
 <nav class="header">
-    <ul class="header__nav">
-      <li *ngFor="let button of buttons" class="header__nav-item">
-        <a [routerLink]="button.link" class="header__nav-link">{{ button.label }}</a>
-      </li>
-    </ul>
-  </nav>
-  
+  <ul class="header__nav">
+    <li *ngFor="let icon of icons" class="header__nav-item">
+      <a [href]="icon.link" target="_blank" class="header__nav-link">
+        <img [src]="icon.src" [alt]="icon.src" [width]="icon.size" [height]="icon.size" class="header__nav-icon" />
+      </a>
+    </li>
+    <li class="header__nav-item header__nav-item--login">
+      <button class="header__nav-link header__nav-link--login" (click)="login()">Login</button>
+    </li>
+  </ul>
+</nav>

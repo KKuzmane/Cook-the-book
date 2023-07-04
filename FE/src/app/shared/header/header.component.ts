@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RecipeService } from '../../services/recipe.service';
 
 @Component({
   selector: 'app-header',
@@ -6,9 +7,23 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  buttons = [
-    { label: 'Button 1', link: '/button1' },
-    { label: 'Button 2', link: '/button2' },
-    // Add more buttons as needed
+  icons = [
+    { src: 'assets/images/contactIcons/index.png', size: '50x50', link: 'http://localhost:4200/' },
+    { src: 'assets/images/contactIcons/facebook.png', size: '50x50', link: 'http://facebook.com/' },
+    { src: 'assets/images/contactIcons/instagram.png', size: '50x50', link: 'http://instagram.com/' },
+    { src: 'assets/images/contactIcons/twitter.png', size: '50x50', link: 'http://twitter.com/' },
+    { src: 'assets/images/contactIcons/draugiem.png', size: '50x50', link: 'http://draugiem.lv/' },
+    { src: 'assets/images/contactIcons/gmail.png', size: '50x50', link: 'http://gmail.com/' }
   ];
+
+  constructor(private recipeService: RecipeService) { }
+
+  login() {
+    console.log('logged in');
+  }
+
+  handleIconClick(icon: any) {
+    console.log('Icon clicked:', icon);
+  }
+
 }
