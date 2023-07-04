@@ -107,5 +107,20 @@ namespace Cook_the_book.Service
                 return maxRecipe.Id + 1;
             }
         }
+
+        public async Task<List<Recipe>> GetRecipesFromCategory(string category)
+        {
+            try
+            {
+                var filter = Builders<Recipe>.Filter.ElemMatch(x => x.Categories, c => c.Name == category);
+                var recipes = await _recipeCollection.Find(filter).ToListAsync();
+                return recipes;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"An error occurred while getting the category with name {category}: {ex.Message}");
+                throw;
+            }
+        }
     }
 }

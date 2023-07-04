@@ -1,6 +1,7 @@
 ﻿using Cook_the_book.Models;
 using Cook_the_book.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Driver.Core.Events;
 
 namespace Cook_the_book.Controllers
 {
@@ -60,6 +61,13 @@ namespace Cook_the_book.Controllers
                 return NotFound();
             }
             return NoContent();
+        }
+
+        [HttpGet("GetCategory")]
+        public async Task<IActionResult> GetRecipesFromCategory(string category)
+        {
+            var recipes = await _recipeService.GetRecipesFromCategory(category);
+            return Ok(recipes);
         }
     }
 }
