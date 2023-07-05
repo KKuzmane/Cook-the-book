@@ -2,6 +2,7 @@ using Cook_the_book.Data;
 using Cook_the_book.Service.Interfaces;
 using Cook_the_book.Service;
 using Microsoft.Extensions.Configuration;
+using Cook_the_book.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,7 @@ builder.Services.AddSingleton<AppDbContext>(sp =>
     var config = sp.GetRequiredService<IConfiguration>();
     return new AppDbContext(config);
 });
+builder.Services.AddScoped<IImgbbService, ImgbbService>();
 
 var app = builder.Build();
 
