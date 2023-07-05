@@ -1,5 +1,7 @@
-<div class="recipe-category-container" (click)="fetchRecipes()" (mouseenter)="isHovered = true"
-    (mouseleave)="isHovered = false">
-    <div class="recipe-category-image" [style.background-image]="'url(' + imageSrc + ')'"></div>
-    <div class="recipe-category-text">{{ text }}</div>
+<div class="recipe-category-list">
+    <div class="recipe-category-container" *ngFor="let category of categories" (click)="fetchRecipes(category.category)"
+        (mouseenter)="isHovered = true" (mouseleave)="isHovered = false">
+        <div class="recipe-category-image" [style.background-image]="'url(' + category.imageSrc + ')'"></div>
+        <div class="recipe-category-text">{{ category.text }}</div>
+    </div>
 </div>
