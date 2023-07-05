@@ -1,6 +1,11 @@
 <nav class="header">
   <ul class="header__nav">
-    <li *ngFor="let icon of icons" class="header__nav-item">
+    <li class="header__nav-item header__nav-item--left">
+      <a [routerLink]="['/categories']" class="header__nav-link">
+        <img src="assets/images/contactIcons/index.png" alt="index" width="50" height="50" class="header__nav-icon" />
+      </a>
+    </li>
+    <li *ngFor="let icon of icons.slice(1)" class="header__nav-item">
       <a [href]="icon.link" target="_blank" class="header__nav-link">
         <img [src]="icon.src" [alt]="icon.src" [width]="icon.size" [height]="icon.size" class="header__nav-icon" />
       </a>

@@ -1,0 +1,8 @@
+<div class="recipe-list-container">
+    <div class="recipe-item" *ngFor="let recipe of recipes">
+        <div class="recipe-image">
+            <img [src]="recipe.pictures[0]" alt="Recipe Image">
+        </div>
+        <div class="recipe-name">{{ recipe.name }}</div>
+    </div>
+</div>

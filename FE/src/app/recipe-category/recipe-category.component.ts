@@ -1,6 +1,8 @@
+
+
 import { Component } from '@angular/core';
-import { Recipe } from '../models/recipe.model';
 import { RecipeService } from '../services/recipe.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-recipe-category',
@@ -8,6 +10,7 @@ import { RecipeService } from '../services/recipe.service';
   styleUrls: ['./recipe-category.component.css']
 })
 export class RecipeCategoryComponent {
+  isHovered = false;
   categories: any[] = [
     {
       category: 'Meat Food',
@@ -41,19 +44,9 @@ export class RecipeCategoryComponent {
     }
   ];
 
-  isHovered = false;
-
-  constructor(private recipeService: RecipeService) { }
+  constructor(private recipeService: RecipeService, private router: Router) { }
 
   fetchRecipes(category: string): void {
-    this.recipeService.getCategory(category)
-      .subscribe(
-        (recipes: Recipe[]) => {
-          console.log(recipes);
-        },
-        (error: any) => {
-          console.error(error);
-        }
-      );
+    this.router.navigate(['/recipes', category]);
   }
 }

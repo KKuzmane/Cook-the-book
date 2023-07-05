@@ -1,12 +1,24 @@
 .header__nav {
-    height: 50px;
-    list-style-type: none;
-    margin: 0;
     display: flex;
+    justify-content: center;
     align-items: center;
+    height: 50px;
     background-color: #ABD33F;
     padding: 10px;
     border-radius: 5px;
+    list-style: none;
+}
+
+.header__nav-item {
+    margin: 0 6px;
+}
+
+.header__nav-item::marker {
+    display: none;
+}
+
+.header__nav-item--left {
+    margin-right: auto;
 }
 
 .header__nav-item--login {
@@ -18,7 +30,6 @@
     display: inline-block;
     color: #fff;
     text-decoration: none;
-    margin: 6px;
     border-radius: 5px;
     background-color: transparent;
     transition: background-color 0.3s ease;
