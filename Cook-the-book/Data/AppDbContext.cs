@@ -1,6 +1,5 @@
 ﻿using Cook_the_book.Models;
 using MongoDB.Driver;
-using Microsoft.Extensions.Configuration;
 
 namespace Cook_the_book.Data
 {
@@ -17,5 +16,6 @@ namespace Cook_the_book.Data
         }
 
         public IMongoCollection<Recipe> Recipes => _database.GetCollection<Recipe>("Recipes");
+        public IMongoCollection<User> Users => _database.GetCollection<User>("Users");
     }
 }

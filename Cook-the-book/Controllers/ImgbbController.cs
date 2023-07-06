@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Cook_the_book.Services;
 using Cook_the_book.Service.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Cook_the_book.Controllers
 {
@@ -16,6 +16,7 @@ namespace Cook_the_book.Controllers
         }
 
         [HttpPost("UploadPhoto")]
+        [Authorize]
         public async Task<IActionResult> UploadPhoto(IFormFile photo)
         {
             try
@@ -28,5 +29,6 @@ namespace Cook_the_book.Controllers
                 return StatusCode(500, $"An error occurred: {ex.Message}");
             }
         }
+
     }
 }
