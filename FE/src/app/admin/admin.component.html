@@ -1,0 +1,19 @@
+<h2>Create New Recipe</h2>
+<form (submit)="onSubmit()">
+    <!-- Add form fields for recipe information (name, instructions, etc.) -->
+    <!-- Use ngModel to bind form fields to component properties -->
+    <!-- Add form validation as needed -->
+
+    <button type="submit">Create Recipe</button>
+</form>
+
+<hr>
+
+<h2>Existing Recipes</h2>
+<ul>
+    <li *ngFor="let recipe of recipes">
+        {{ recipe.name }} <!-- Display recipe name -->
+        <button (click)="editRecipe(recipe)">Edit</button>
+        <button (click)="deleteRecipe(recipe.id)">Delete</button>
+    </li>
+</ul>

@@ -38,9 +38,17 @@ export class HeaderComponent {
     };
 
     this.userService.login(loginRequest).subscribe(
-      response => {
-        console.log('Login successful');
-        // TODO: Handle successful login (e.g., store token, navigate to another page)
+      token => {
+        if (token) {
+          console.log('Login successful');
+          // TODO: Handle successful login (e.g., store token, navigate to another page)
+          localStorage.setItem('token', token);
+          // Redirect to the admin form component after successful login
+          this.router.navigate(['/admin']); // Replace '/admin' with the actual path to your admin form component
+        } else {
+          console.error('Login failed: Invalid username or password');
+          // TODO: Handle login error (e.g., display error message)
+        }
       },
       error => {
         console.error('Login failed:', error);
@@ -48,6 +56,8 @@ export class HeaderComponent {
       }
     );
   }
+
+
 
 
 
