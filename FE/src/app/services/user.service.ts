@@ -26,6 +26,10 @@ export class UserService {
             );
     }
 
+    hasValidToken(): boolean {
+        const token = localStorage.getItem('token');
+        return !!token;
+    }
 
     getUser(username: string): Observable<User> {
         return this.http.get<User>(`${this.apiUrl}/${username}`);
