@@ -1,8 +1,5 @@
 export interface User {
     id: number;
-    name: string;
-    ingredients: string;
-    instructions: string;
-    pictures: string[];
-    keywords: string[];
+    username: string;
+    passwordHash: string;
 }

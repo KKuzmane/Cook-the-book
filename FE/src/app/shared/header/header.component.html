@@ -15,3 +15,14 @@
     </li>
   </ul>
 </nav>
+
+<div class="login-popup" *ngIf="showLoginForm">
+  <h2>Login</h2>
+  <form (ngSubmit)="submitLogin()">
+    <input type="text" id="username" name="username" placeholder="username" [(ngModel)]="loginForm.username" required>
+    <input type="password" id="password" name="password" placeholder="password" [(ngModel)]="loginForm.password"
+      required>
+
+    <button type="submit">Submit</button>
+  </form>
+</div>

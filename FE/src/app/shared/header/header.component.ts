@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { RecipeService } from '../../services/recipe.service';
+import { UserService } from '../../services/user.service';
+import { LoginRequest } from '../../models/login-request.model';
 
 @Component({
   selector: 'app-header',
@@ -17,18 +18,44 @@ export class HeaderComponent {
     { src: 'assets/images/contactIcons/gmail.png', size: '50x50', link: 'http://gmail.com/' }
   ];
 
-  constructor(private router: Router, private recipeService: RecipeService) { }
+  loginForm: LoginRequest = {
+    username: '',
+    password: ''
+  };
+
+  showLoginForm = false;
+
+  constructor(private router: Router, private userService: UserService) { }
 
   login() {
-    console.log('logged in');
+    this.showLoginForm = true;
   }
 
+  submitLogin() {
+    const loginRequest: LoginRequest = {
+      username: this.loginForm.username,
+      password: this.loginForm.password
+    };
+
+    this.userService.login(loginRequest).subscribe(
+      response => {
+        console.log('Login successful');
+        // TODO: Handle successful login (e.g., store token, navigate to another page)
+      },
+      error => {
+        console.error('Login failed:', error);
+        // TODO: Handle login error (e.g., display error message)
+      }
+    );
+  }
+
+
+
   handleIconClick(icon: any) {
-    if (icon.link === 'recipe-category') {
+    if (icon.link === 'categories') {
       this.router.navigate(['/categories']);
     } else {
       window.open(icon.link, '_blank');
     }
   }
-
 }

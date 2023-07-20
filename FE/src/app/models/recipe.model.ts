@@ -1,5 +1,8 @@
 export interface Recipe {
     id: number;
-    username: string;
-    passwordHash: string;
+    name: string;
+    ingredients: string;
+    instructions: string;
+    pictures: string[];
+    keywords: string[];
 }

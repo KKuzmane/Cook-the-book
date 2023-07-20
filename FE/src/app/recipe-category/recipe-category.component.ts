@@ -13,35 +13,50 @@ export class RecipeCategoryComponent {
   isHovered = false;
   categories: any[] = [
     {
-      category: 'Meat Food',
-      imageSrc: 'assets/images/foodCategories/meat_food_image.jpg',
-      text: 'Meat Food'
+      category: 'Main',
+      imageSrc: 'assets/images/foodCategories/main_food_image.jpg',
+      text: 'Pamatēdieni'
     },
     {
-      category: 'Desserts',
+      category: 'Soups',
+      imageSrc: 'assets/images/foodCategories/soups_image.jpg',
+      text: 'Zupas'
+    },
+    {
+      category: 'Sweets',
       imageSrc: 'assets/images/foodCategories/desserts_image.jpg',
-      text: 'Desserts'
+      text: 'Saldie'
     },
     {
-      category: 'Veganic',
+      category: 'Vegeterian',
       imageSrc: 'assets/images/foodCategories/veganic_image.jpg',
-      text: 'Veganic'
-    },
-    {
-      category: 'Grilled',
-      imageSrc: 'assets/images/foodCategories/grilled_image.jpg',
-      text: 'Grilled'
+      text: 'Veģetārs'
     },
     {
       category: 'Salads',
       imageSrc: 'assets/images/foodCategories/salads_image.jpg',
-      text: 'Salads'
+      text: 'Salāti'
     },
     {
-      category: 'Best Choice',
-      imageSrc: 'assets/images/foodCategories/best_choice_image.jpg',
-      text: 'Best Choice'
-    }
+      category: 'Drinks',
+      imageSrc: 'assets/images/foodCategories/drinks_image.jpg',
+      text: 'Dzērieni'
+    },
+    {
+      category: 'Dormitory',
+      imageSrc: 'assets/images/foodCategories/dormitory_image.jpg',
+      text: 'Gatavo kojās'
+    },
+    {
+      category: 'Impression',
+      imageSrc: 'assets/images/foodCategories/impression_image.jpg',
+      text: 'Gribu atstāt lielisku pirmo iespaidu'
+    },
+    {
+      category: 'Other',
+      imageSrc: 'assets/images/foodCategories/meat_food_image.jpg',
+      text: 'Cits'
+    },
   ];
 
   constructor(private recipeService: RecipeService, private router: Router) { }
