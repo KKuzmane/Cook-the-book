@@ -1,8 +1,5 @@
-﻿using Cook_the_book.Models;
-using Cook_the_book.Service.Interfaces;
+﻿using Cook_the_book.Service.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using MongoDB.Driver.Core.Events;
-using System.Buffers.Text;
 
 namespace Cook_the_book.Controllers
 {
@@ -38,7 +35,7 @@ namespace Cook_the_book.Controllers
         [HttpPost("CreateRecipe")]
         public async Task<ActionResult<Recipe>> CreateRecipe(Recipe recipe)
         {
-            await _recipeService.CreateRecipe(recipe); // Modified this line
+            await _recipeService.CreateRecipe(recipe);
             return CreatedAtAction(nameof(GetRecipe), new { id = recipe.Id }, recipe);
         }
 
@@ -68,6 +65,13 @@ namespace Cook_the_book.Controllers
         public async Task<IActionResult> GetRecipesFromCategory(string category)
         {
             var recipes = await _recipeService.GetRecipesFromCategory(category);
+            return Ok(recipes);
+        }
+
+        [HttpGet("SearchRecipe")]
+        public async Task<IActionResult> SearchRecipe(string query)
+        {
+            var recipes = await _recipeService.SearchRecipe(query);
             return Ok(recipes);
         }
     }

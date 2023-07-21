@@ -10,5 +10,6 @@ namespace Cook_the_book.Service.Interfaces
         Task<bool> UpdateRecipe(int id, Recipe updatedRecipe);
         Task<bool> DeleteRecipe(int id);
         Task<List<Recipe>> GetRecipesFromCategory(string category);
+        Task<List<Recipe>> SearchRecipe(string query);
     }
 }

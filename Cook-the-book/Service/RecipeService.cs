@@ -1,13 +1,8 @@
 ﻿using Cook_the_book.Data;
-using Cook_the_book.Models;
 using Cook_the_book.Service.Interfaces;
-using Microsoft.AspNetCore.Components;
-using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Globalization;
+using System.Text;
 
 namespace Cook_the_book.Service
 {
@@ -122,5 +117,48 @@ namespace Cook_the_book.Service
                 throw;
             }
         }
+
+        public async Task<List<Recipe>> SearchRecipe(string query)
+        {
+            try
+            {
+                // Normalize the query using the RemoveDiacritics method
+                string normalizedQuery = RemoveDiacritics(query);
+
+                // Fetch all recipes from the database
+                var allRecipes = await _recipeCollection.Find(_ => true).ToListAsync();
+
+                // Search for the matching recipes
+                List<Recipe> searchResults = allRecipes
+                    .Where(recipe => recipe.Name != null &&
+                        RemoveDiacritics(recipe.Name).Contains(normalizedQuery, StringComparison.OrdinalIgnoreCase))
+                    .Take(5) // Limit the search results to 5 recipes
+                    .ToList();
+
+                return searchResults;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError($"An error occurred while searching for recipes with query {query}: {ex.Message}");
+                throw;
+            }
+        }
+
+
+        #region Helpers
+        private string RemoveDiacritics(string text)
+        {
+            var normalizedText = text.Normalize(NormalizationForm.FormKD);
+            var builder = new StringBuilder();
+
+            foreach (var c in normalizedText)
+            {
+                if (CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
+                    builder.Append(c);
+            }
+
+            return builder.ToString();
+        }
+        #endregion
     }
 }
