@@ -92,7 +92,7 @@ namespace Cook_the_book.Service
             var maxRecipe = await _recipeCollection.Find(_ => true)
                 .SortByDescending(r => r.Id)
                 .FirstOrDefaultAsync();
-
+            
             if (maxRecipe == null)
             {
                 return 1;
@@ -122,17 +122,13 @@ namespace Cook_the_book.Service
         {
             try
             {
-                // Normalize the query using the RemoveDiacritics method
                 string normalizedQuery = RemoveDiacritics(query);
-
-                // Fetch all recipes from the database
                 var allRecipes = await _recipeCollection.Find(_ => true).ToListAsync();
 
-                // Search for the matching recipes
                 List<Recipe> searchResults = allRecipes
                     .Where(recipe => recipe.Name != null &&
                         RemoveDiacritics(recipe.Name).Contains(normalizedQuery, StringComparison.OrdinalIgnoreCase))
-                    .Take(5) // Limit the search results to 5 recipes
+                    .Take(5)
                     .ToList();
 
                 return searchResults;

@@ -1,7 +1,6 @@
 using Cook_the_book.Data;
 using Cook_the_book.Service.Interfaces;
 using Cook_the_book.Service;
-using Microsoft.Extensions.Configuration;
 using Cook_the_book.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -90,8 +89,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI(c =>
     {
         c.SwaggerEndpoint("/swagger/v1/swagger.json", "Your API V1");
-        c.DefaultModelsExpandDepth(-1); // Hide models by default
-        c.RoutePrefix = string.Empty;
     });
 }
 
