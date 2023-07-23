@@ -1,38 +1,50 @@
 <div class="admin-container">
-    <h2>Create New Recipe</h2>
-    <form (ngSubmit)="onSubmit()">
-        <div class="form-group">
-            <label for="name">Recipe Name</label>
-            <input type="text" id="name" name="name" [(ngModel)]="newRecipe.name" required>
-        </div>
-        <div class="form-group">
-            <label for="ingredients">Ingredients</label>
-            <textarea id="ingredients" name="ingredients" [(ngModel)]="newRecipe.ingredients" required></textarea>
-        </div>
-        <div class="form-group">
-            <label for="instructions">Instructions</label>
-            <textarea id="instructions" name="instructions" [(ngModel)]="newRecipe.instructions" required></textarea>
-        </div>
-        <div class="form-group">
-            <label for="keywords">Keywords</label>
-            <input type="text" id="keywords" name="keywords" [(ngModel)]="newRecipe.keywords" required>
-        </div>
-        <button type="submit">Create Recipe</button>
-    </form>
+    <div class="button-container">
+        <button class="action-button" (click)="showCreateForm = false">Izveidot recepti</button>
+        <!-- <button class="action-button" (click)="showEditForm = false">Meklēt receptes</button> -->
+    </div>
 
-    <h2>Existing Recipes</h2>
-    <ul class="recipes-list">
-        <li *ngFor="let recipe of recipes">
-            <div class="recipe-item">
-                <h3>{{ recipe.name }}</h3>
-                <p><strong>Ingredients:</strong> {{ recipe.ingredients }}</p>
-                <p><strong>Instructions:</strong> {{ recipe.instructions }}</p>
-                <p><strong>Keywords:</strong> {{ recipe.keywords.join(', ') }}</p>
-                <div class="recipe-actions">
-                    <button (click)="editRecipe(recipe)">Edit</button>
-                    <button (click)="deleteRecipe(recipe.id)">Delete</button>
-                </div>
+    <div *ngIf="!showCreateForm">
+        <h2>Izveidot recepti</h2>
+        <form (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label for="name">Recipe Name</label>
+                <input type="text" [(ngModel)]="newRecipe.name" name="name" id="name" placeholder="Recipe Name">
             </div>
-        </li>
-    </ul>
+            <div class="form-group">
+                <label for="ingredients">Ingredients</label>
+                <div *ngFor="let ingredient of newRecipe.ingredients; let i = index">
+                    <input type="text" [(ngModel)]="newRecipe.ingredients[i].name" name="ingredientName{{i}}"
+                        placeholder="Ingredient Name">
+                    <input type="number" [(ngModel)]="newRecipe.ingredients[i].quantity" name="ingredientQuantity{{i}}"
+                        placeholder="Quantity">
+                    <input type="text" [(ngModel)]="newRecipe.ingredients[i].unit" name="ingredientUnit{{i}}"
+                        placeholder="Unit">
+                    <button type="button" (click)="removeIngredient(i)">-</button>
+                </div>
+                <button type="button" (click)="addIngredient()">+</button>
+            </div>
+            <div class="form-group">
+                <label for="instructions">Instructions</label>
+                <textarea [(ngModel)]="newRecipe.instructions" name="instructions" id="instructions"
+                    placeholder="Instructions"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="photos">Photos</label>
+                <div *ngFor="let photo of newRecipe.pictures">
+                    <img [src]="photo" class="uploaded-photo">
+                </div>
+                <input type="file" (change)="onPhotoSelected($event)" name="photos" id="photos" multiple>
+            </div>
+            <div class="form-group">
+                <label for="keywords">Keywords</label>
+                <div *ngFor="let keyword of newRecipe.keywords; let i = index">
+                    <input type="text" [(ngModel)]="newRecipe.keywords[i]" name="keyword{{i}}" placeholder="Keyword">
+                    <button type="button" (click)="removeKeyword(i)">-</button>
+                </div>
+                <button type="button" (click)="addKeyword()">+</button>
+            </div>
+            <button type="submit">Izveidot</button>
+        </form>
+    </div>
 </div>

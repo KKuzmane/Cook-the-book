@@ -11,7 +11,9 @@
       </a>
     </li>
     <li class="header__nav-item header__nav-item--login">
-      <button class="header__nav-link header__nav-link--login" (click)="login()">Login</button>
+      <button class="header__nav-link header__nav-link--login" *ngIf="!adminIsLoggedIn" (click)="login()">Login</button>
+      <button class="header__nav-link header__nav-link--login" *ngIf="adminIsLoggedIn"
+        (click)="logout()">Logout</button>
     </li>
   </ul>
 </nav>
@@ -22,7 +24,6 @@
     <input type="text" id="username" name="username" placeholder="username" [(ngModel)]="loginForm.username" required>
     <input type="password" id="password" name="password" placeholder="password" [(ngModel)]="loginForm.password"
       required>
-
     <button type="submit">Submit</button>
   </form>
 </div>

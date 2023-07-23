@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -10,10 +10,10 @@ export class ImgbbService {
 
     constructor(private http: HttpClient) { }
 
-    uploadPhoto(photo: File): Observable<string> {
+    uploadPhoto(photo: File, apiKey: string): Observable<string> {
         const formData = new FormData();
         formData.append('photo', photo);
-
-        return this.http.post<string>(`${this.baseUrl}/UploadPhoto`, formData);
+        const headers = new HttpHeaders().set('Authorization', `Bearer ${apiKey}`);
+        return this.http.post(`${this.baseUrl}/UploadPhoto`, formData, { headers, responseType: 'text' });
     }
 }

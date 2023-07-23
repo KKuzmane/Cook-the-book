@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Recipe } from '../models/recipe.model';
 import { environment } from '../../environments/environment';
+import { query } from '@angular/animations';
 
 @Injectable({
     providedIn: 'root'
@@ -34,5 +35,9 @@ export class RecipeService {
 
     getCategory(category: string): Observable<Recipe[]> {
         return this.http.get<Recipe[]>(`${this.apiUrl}/GetCategory?category=${category}`);
+    }
+
+    searchRecipe(query: string): Observable<Recipe[]> {
+        return this.http.get<Recipe[]>(`${this.apiUrl}/SearchRecipe?query=${query}`);
     }
 }

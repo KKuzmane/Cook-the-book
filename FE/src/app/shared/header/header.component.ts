@@ -23,12 +23,18 @@ export class HeaderComponent {
     password: ''
   };
 
-  showLoginForm = false;
+  showLoginForm: boolean = false;
+  adminIsLoggedIn: boolean = false;
 
   constructor(private router: Router, private userService: UserService) { }
 
   login() {
     this.showLoginForm = true;
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    this.adminIsLoggedIn = false;
   }
 
   submitLogin() {
@@ -42,6 +48,8 @@ export class HeaderComponent {
         if (token) {
           localStorage.setItem('token', token);
           this.router.navigate(['/admin']);
+          this.showLoginForm = false;
+          this.adminIsLoggedIn = true;
         } else {
           console.error('Login failed: Invalid username or password');
         }
