@@ -4,18 +4,18 @@
     {
         public string Name { get; set; }
         public double Quantity { get; set; }
-        public Unit Unit { get; set; }
-    }
-
-    public enum Unit
-    {
-        ml,
-        L,
-        mg,
-        g,
-        gb,
-        tējkarote,
-        ēdamkarote,
-        cits
+        public int Unit { get; set; }
     }
 }
+
+    //public enum Unit
+    //{
+    //    ml,
+    //    L,
+    //    mg,
+    //    g,
+    //    gb,
+    //    tējkarote,
+    //    ēdamkarote,
+    //    cits
+    //}
