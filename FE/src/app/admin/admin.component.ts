@@ -53,6 +53,16 @@ export class AdminComponent implements OnInit {
     this.newRecipe?.keywords?.splice(index, 1);
   }
 
+  trackByIndex(index: number, item: any): number {
+    return index;
+  }
+
+  onKeywordChange(index: number, value: string): void {
+    if (this.newRecipe.keywords) {
+      this.newRecipe.keywords[index] = value;
+    }
+  }
+
   addCategory(): void {
     this.newRecipe.categories.push({ name: '' });
   }
@@ -100,8 +110,6 @@ export class AdminComponent implements OnInit {
   }
 
   createRecipe(): void {
-    console.log(`createRecipe func`);
-    console.log(this.newRecipe);
     try {
       this.recipeService.createRecipe(this.newRecipe).subscribe(
         recipe => {
@@ -116,6 +124,8 @@ export class AdminComponent implements OnInit {
     } catch (error) {
       console.error('Error creating recipe:', error);
     }
+
+    this.newRecipe.pictures = [];
   }
 
   loadRecipes(): void {

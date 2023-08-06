@@ -7,15 +7,3 @@
         public int Unit { get; set; }
     }
 }
-
-    //public enum Unit
-    //{
-    //    ml,
-    //    L,
-    //    mg,
-    //    g,
-    //    gb,
-    //    tējkarote,
-    //    ēdamkarote,
-    //    cits
-    //}

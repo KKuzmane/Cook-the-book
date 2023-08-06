@@ -26,8 +26,8 @@
 
             <div class="form-group">
                 <label for="keywords">Atslēgas vārdi</label>
-                <div *ngFor="let keyword of newRecipe.keywords as keywords; let i = index">
-                    <input type="text" [(ngModel)]="keywords[i]" name="keyword{{i}}" placeholder="Atslēgas vārds">
+                <div *ngFor="let keyword of newRecipe.keywords as keywords; let i = index; trackBy: trackByIndex">
+                    <input type="text" [ngModel]="keywords[i]" (ngModelChange)="onKeywordChange(i, $event)" name="keyword{{i}}" placeholder="Atslēgas vārds">
                     <button type="button" (click)="removeKeyword(i)">-</button>
                 </div>
                 <button type="button" (click)="addKeyword()">+</button>
@@ -57,7 +57,6 @@
                 <input type="file" (change)="onPhotoSelected($event)" name="photos" id="photos" multiple>
                 <button type="button" (click)="uploadPhotos()">Augšlejuplādēt</button>
             </div>
-
 
             <button type="submit">Izveidot</button>
         </form>

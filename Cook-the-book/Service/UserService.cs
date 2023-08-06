@@ -3,12 +3,9 @@ using System.Security.Claims;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 using Cook_the_book.Data;
 using Cook_the_book.Models;
 using Cook_the_book.Service.Interfaces;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using MongoDB.Driver;
 
@@ -47,7 +44,6 @@ namespace Cook_the_book.Service
             }
             catch (Exception ex)
             {
-                // Log the exception or handle it as needed
                 return false;
             }
         }
@@ -72,7 +68,6 @@ namespace Cook_the_book.Service
             }
             catch (Exception ex)
             {
-                // Log the exception or handle it as needed
                 return null;
             }
         }
@@ -93,7 +88,6 @@ namespace Cook_the_book.Service
             }
             catch (Exception ex)
             {
-                // Log the exception or handle it as needed
                 return null;
             }
         }

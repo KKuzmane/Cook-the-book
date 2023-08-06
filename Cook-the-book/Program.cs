@@ -17,7 +17,6 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo { Title = "Your API", Version = "v1" });
 
-    // Add JWT bearer authentication scheme
     var jwtSettings = builder.Configuration.GetSection("JwtSettings");
     var securityScheme = new OpenApiSecurityScheme
     {
@@ -31,7 +30,6 @@ builder.Services.AddSwaggerGen(c =>
     };
     c.AddSecurityDefinition("Bearer", securityScheme);
 
-    // Require JWT authentication globally
     c.AddSecurityRequirement(new OpenApiSecurityRequirement
     {
         {
@@ -47,7 +45,6 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-// Add authentication
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -67,10 +64,8 @@ builder.Services.AddAuthentication(options =>
     };
 });
 
-// Add authorization
 builder.Services.AddAuthorization();
 
-// Register services
 builder.Services.AddScoped<IRecipeService, RecipeService>();
 builder.Services.AddSingleton<AppDbContext>(sp =>
 {
@@ -82,7 +77,6 @@ builder.Services.AddScoped<IUserService, UserService>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

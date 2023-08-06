@@ -45,9 +45,11 @@ namespace Cook_the_book.Services
         {
             using (var httpClient = new HttpClient())
             {
-                var formData = new MultipartFormDataContent();
-                formData.Add(new StringContent(_imgbbApiKey), "key");
-                formData.Add(new StringContent(base64Image), "image");
+                var formData = new MultipartFormDataContent
+                {
+                    { new StringContent(_imgbbApiKey), "key" },
+                    { new StringContent(base64Image), "image" }
+                };
 
                 var response = await httpClient.PostAsync(ImgbbUploadUrl, formData);
                 response.EnsureSuccessStatusCode();
